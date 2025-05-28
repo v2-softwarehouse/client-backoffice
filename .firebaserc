@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "my-snack-cd3cb"
+  },
+  "targets": {
+    "mysnack-97e3e": {
+      "hosting": {
+        "client-backoffice-6fb29": [
+          "client-backoffice-6fb29"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
