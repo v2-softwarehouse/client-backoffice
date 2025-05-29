@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export":"next export"
+    "deploy": "firebase deploy --only hosting:client-backoffice-6fb29"
   },
   "dependencies": {
     "firebase": "^11.8.1",
