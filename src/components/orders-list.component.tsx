@@ -1,19 +1,31 @@
 import { Order } from "@/models";
 import { OrderListItem } from "./order-list-item.component";
+import { EmptyState } from "./empty-state.component";
+import { useOrder } from "@/hooks";
+import { LoadingContainer } from "./loading-container.component";
+import { useEffect } from "react";
 
-type OrdersListProps = {
-  items: Order[];
-};
+export const Orders = () => {
+  const { items, setup, loading } = useOrder();
 
-export const Orders = ({ items }: OrdersListProps) => {
+  useEffect(() => {
+    setup();
+  }, []);
+
   return (
-    <div>
+    <div className="w-xl">
       <h1 className="text-2xl text-center font-bold p-3">Backoffice</h1>
-      <ul>
-        {items.map((elem: Order, index) => (
-          <OrderListItem key={index} item={elem} />
-        ))}
-      </ul>
+      {loading ? (
+        <LoadingContainer />
+      ) : items && items.length ? (
+        <ul>
+          {items.map((elem: Order, index) => (
+            <OrderListItem key={index} item={elem} />
+          ))}
+        </ul>
+      ) : (
+        <EmptyState />
+      )}
     </div>
   );
 };

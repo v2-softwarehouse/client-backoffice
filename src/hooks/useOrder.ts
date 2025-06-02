@@ -3,6 +3,7 @@ import { AuthService, OrderService } from "@/services";
 import { useState } from "react";
 
 export const useOrder = () => {
+  const [loading, setLoading] = useState(true);
   const [items, setItems] = useState<Order[]>([]);
 
   const setup = async () => {
@@ -26,11 +27,14 @@ export const useOrder = () => {
       });
     } catch (error: any) {
       console.error("Erro ao autenticar operador:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return {
     items,
     setup,
+    loading,
   };
 };
